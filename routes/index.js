@@ -20,8 +20,8 @@ router.get('/', ctrlHome.get);
 router.post('/', ctrlHome.send);
 
 router.get('/admin', isAdmin, ctrlAdmin.get);
-router.post('/admin/upload', ctrlAdmin.postUpload);
-router.post('/admin/skills', ctrlAdmin.postSkills);
+router.post('/admin/upload', isAdmin, ctrlAdmin.postUpload);
+router.post('/admin/skills', isAdmin, ctrlAdmin.postSkills);
 
 router.get('/login', ctrlLogin.get);
 router.post('/login', ctrlLogin.post);
