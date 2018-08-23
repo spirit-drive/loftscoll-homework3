@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const ctrlHome = require('../controllers/index');
-const ctrlAdmin = require('../controllers/admin');
+const { get: getIndex, send: sendMail } = require('../controllers/index');
+const { get: getAdmin, postUpload, postSkills} = require('../controllers/index');
+const { get: getLogin, postLogin} = require('../controllers/index');
 const ctrlLogin = require('../controllers/login');
 
 const isAdmin = (req, res, next) => {
@@ -16,14 +17,14 @@ const isAdmin = (req, res, next) => {
     res.redirect('/login');
 };
 
-router.get('/', ctrlHome.get);
-router.post('/', ctrlHome.send);
+router.get('/', getIndex);
+router.post('/', sendMail);
 
-router.get('/admin', isAdmin, ctrlAdmin.get);
-router.post('/admin/upload', isAdmin, ctrlAdmin.postUpload);
-router.post('/admin/skills', isAdmin, ctrlAdmin.postSkills);
+router.get('/admin', isAdmin, getAdmin);
+router.post('/admin/upload', isAdmin, postUpload);
+router.post('/admin/skills', isAdmin, postSkills);
 
-router.get('/login', ctrlLogin.get);
-router.post('/login', ctrlLogin.post);
+router.get('/login', getLogin);
+router.post('/login', postLogin);
 
 module.exports = router;

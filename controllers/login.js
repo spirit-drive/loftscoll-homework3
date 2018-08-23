@@ -17,7 +17,7 @@ module.exports.post = function (req, res, next) {
             res.redirect('./login');
             return next(err);
         }
-        const {_email, _password} = db.stores.file.store.admin;
+        const {email: _email, password: _password} = db.stores.file.store.admin;
         const {email, password} = admin;
         if (email === _email && password === _password) {
             req.session.isAdmin = true;

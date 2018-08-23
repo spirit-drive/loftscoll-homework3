@@ -28,8 +28,8 @@
     "years": "20"
   },
   "admin": {
-    "_email": "spirit-drive@yandex.ru",
-    "_password": "1"
+    "email": "spirit-drive@yandex.ru",
+    "password": "1"
   },
   "mails": [
     {
