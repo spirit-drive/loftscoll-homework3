@@ -12,7 +12,7 @@ module.exports.get = function (req, res) {
 };
 
 module.exports.send = function (req, res, next) {
-    let form = new formidable.IncomingForm();
+    const form = new formidable.IncomingForm();
     form.parse(req, function (err, fields) {
         if (err) return next(err);
 

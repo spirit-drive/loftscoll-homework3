@@ -22,21 +22,16 @@ module.exports.get = function (req, res) {
 };
 
 module.exports.postUpload = function (req, res, next) {
-    let form = new formidable.IncomingForm();
+    const form = new formidable.IncomingForm();
 
-    let upload = path.join('./public', 'upload');
-    let fileName;
+    const upload = path.join('./public', 'upload');
 
-    if (!fs.existsSync(upload)) {
-        fs.mkdirSync(upload);
-    }
+    if (!fs.existsSync(upload)) fs.mkdirSync(upload);
 
     form.uploadDir = path.join(process.cwd(), upload);
 
     form.parse(req, function (err, fields, files) {
-        if (err) {
-            return next(err);
-        }
+        if (err) return next(err);
 
         const valid = validation(fields, files);
 
@@ -46,7 +41,7 @@ module.exports.postUpload = function (req, res, next) {
             return res.redirect(`./`);
         }
 
-        fileName = path.join(upload, files.photo.name);
+        const fileName = path.join(upload, files.photo.name);
 
         fs.rename(files.photo.path, fileName, function (err) {
             if (err) {
@@ -55,7 +50,7 @@ module.exports.postUpload = function (req, res, next) {
                 fs.rename(files.photo.path, fileName);
             }
 
-            let src = fileName.substr(fileName.indexOf('\\'));
+            const src = fileName.substr(fileName.indexOf(path.sep));
 
             const {name, price} = fields;
             const additionProducts = helper.array(db.stores.file.store['additionProducts']);
@@ -69,7 +64,7 @@ module.exports.postUpload = function (req, res, next) {
 };
 
 module.exports.postSkills = function (req, res) {
-    let form = new formidable.IncomingForm();
+    const form = new formidable.IncomingForm();
 
     form.parse(req, function (err, skills, next) {
         if (err) {

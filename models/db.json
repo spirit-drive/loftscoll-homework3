@@ -19,6 +19,16 @@
       "name": "Мяч",
       "src": "\\upload\\load.gif",
       "price": "356"
+    },
+    {
+      "name": "12",
+      "src": "\\upload\\about-us_advantage-bg.png",
+      "price": "1234"
+    },
+    {
+      "name": "Фон",
+      "src": "\\upload\\about-us_advantage-bg.png",
+      "price": "1234"
     }
   ],
   "skills": {

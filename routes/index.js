@@ -2,18 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const { get: getIndex, send: sendMail } = require('../controllers/index');
-const { get: getAdmin, postUpload, postSkills} = require('../controllers/index');
-const { get: getLogin, postLogin} = require('../controllers/index');
-const ctrlLogin = require('../controllers/login');
+const { get: getAdmin, postUpload, postSkills} = require('../controllers/admin');
+const { get: getLogin, post: postLogin} = require('../controllers/login');
 
 const isAdmin = (req, res, next) => {
-    // если в сессии текущего пользователя есть пометка о том, что он является
-    // администратором
-    if (req.session && req.session.isAdmin) {
-        // то всё хорошо :)
-        return next();
-    }
-    // если нет, то перебросить пользователя на страницу введения пароля
+    if (req.session.isAdmin) return next();
     res.redirect('/login');
 };
 

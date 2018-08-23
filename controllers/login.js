@@ -4,12 +4,12 @@ const helper = require('./helper');
 
 module.exports.get = function (req, res) {
     if (req.session.isAdmin) return res.redirect('/admin');
-    const msglogin =helper.flash(req.flash('msglogin'));
+    const msglogin = helper.flash(req.flash('msglogin'));
 
     res.render('login', {msglogin});
 };
 module.exports.post = function (req, res, next) {
-    let form = new formidable.IncomingForm();
+    const form = new formidable.IncomingForm();
 
     form.parse(req, function (err, admin) {
         if (err) {
