@@ -1,0 +1,13 @@
+include _productItem
+
+section.product
+  .container
+    .product__subtitle.subtitle Товары от студии Архипова
+    h2.product__title.title Мой личный бренд
+    ul.product__list
+      each item in products
+        +productItem(item)
+
+      if (additionProducts)
+        each item in additionProducts
+          +productItem(item)

@@ -1,0 +1,32 @@
+{
+  "additionProducts": [
+    {
+      "name": "Фон",
+      "src": "\\upload\\about-us_description-bg.jpg",
+      "price": "356"
+    },
+    {
+      "name": "Еще фон",
+      "src": "\\upload\\faq-bg.jpg",
+      "price": "2435"
+    }
+  ],
+  "skills": {
+    "age": "13",
+    "concerts": "76",
+    "cities": "30",
+    "years": "20"
+  },
+  "admin": {
+    "_email": "spirit-drive@yandex.ru",
+    "_password": "1"
+  },
+  "mails": [
+    {
+      "name": "Игорь",
+      "email": "spirit-drive@yandex.ru",
+      "message": "wet",
+      "dateTime": "2018-8-23 16:25:27"
+    }
+  ]
+}
