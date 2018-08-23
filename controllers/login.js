@@ -8,7 +8,7 @@ module.exports.get = function (req, res) {
 
     res.render('login', {msglogin});
 };
-module.exports.post = function (req, res) {
+module.exports.post = function (req, res, next) {
     let form = new formidable.IncomingForm();
 
     form.parse(req, function (err, admin) {

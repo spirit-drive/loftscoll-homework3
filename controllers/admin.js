@@ -21,7 +21,7 @@ module.exports.get = function (req, res) {
     });
 };
 
-module.exports.postUpload = function (req, res) {
+module.exports.postUpload = function (req, res, next) {
     let form = new formidable.IncomingForm();
 
     let upload = path.join('./public', 'upload');
@@ -71,7 +71,7 @@ module.exports.postUpload = function (req, res) {
 module.exports.postSkills = function (req, res) {
     let form = new formidable.IncomingForm();
 
-    form.parse(req, function (err, skills) {
+    form.parse(req, function (err, skills, next) {
         if (err) {
             req.flash('msgskill', 'Ошибка. Счетчики не обновлены');
             res.redirect('./');
