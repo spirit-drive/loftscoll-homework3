@@ -9,11 +9,21 @@
       "name": "Еще фон",
       "src": "\\upload\\faq-bg.jpg",
       "price": "2435"
+    },
+    {
+      "name": "Фон",
+      "src": "\\upload\\about-us_advantage-bg.png",
+      "price": "123"
+    },
+    {
+      "name": "Мяч",
+      "src": "\\upload\\load.gif",
+      "price": "356"
     }
   ],
   "skills": {
     "age": "13",
-    "concerts": "76",
+    "concerts": "79",
     "cities": "30",
     "years": "20"
   },

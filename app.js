@@ -2,7 +2,10 @@ const express = require('express');
 const path = require('path');
 const router = require('./routes/index');
 const session = require('express-session');
+const flash = require('connect-flash');
 const app = express();
+
+app.use(flash());
 
 app.set('views', path.join(__dirname, 'source', 'template', 'pages'));
 app.set('view engine', 'pug');

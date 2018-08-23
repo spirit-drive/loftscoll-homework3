@@ -2,9 +2,13 @@ const formidable = require('formidable');
 const path = require('path');
 const fs = require('fs');
 const db = require('../models/db')();
+const helper = require('./helper');
 
 module.exports.get = function (req, res) {
-    const {msgfile, msgskill} = req.query;
+
+    const msgskill = helper.flash(req.flash('msgskill'));
+    const msgfile = helper.flash(req.flash('msgfile'));
+
     res.render('admin', {
         msgfile,
         msgskill,
@@ -38,7 +42,8 @@ module.exports.postUpload = function (req, res) {
 
         if (valid.err) {
             fs.unlinkSync(files.photo.path);
-            return res.redirect(`./?msgfile=${valid.status}`);
+            req.flash('msgfile', valid.status);
+            return res.redirect(`./`);
         }
 
         fileName = path.join(upload, files.photo.name);
@@ -53,11 +58,12 @@ module.exports.postUpload = function (req, res) {
             let src = fileName.substr(fileName.indexOf('\\'));
 
             const {name, price} = fields;
-            const additionProducts = db.stores.file.store['additionProducts'] ? [...db.stores.file.store['additionProducts']] : [];
+            const additionProducts = helper.array(db.stores.file.store['additionProducts']);
             additionProducts.push({name, src, price});
             db.set('additionProducts', additionProducts);
             db.save();
-            res.redirect('./?msgfile=Картинка успешно загружена');
+            req.flash('msgfile', 'Картинка успешно загружена');
+            res.redirect('./');
         });
     });
 };
@@ -67,13 +73,15 @@ module.exports.postSkills = function (req, res) {
 
     form.parse(req, function (err, skills) {
         if (err) {
-            res.redirect('./?msgskill=Ошибка. Счетчики не обновлены');
+            req.flash('msgskill', 'Ошибка. Счетчики не обновлены');
+            res.redirect('./');
             return next(err);
         }
 
         db.set('skills', skills);
         db.save();
-        res.redirect('./?msgskill=Счетчики успешно обновлены');
+        req.flash('msgskill', 'Счетчики успешно обновлены');
+        res.redirect('./');
     });
 };
 
